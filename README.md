@@ -8,30 +8,29 @@ Please feel free to copy or embed this code to your own project. Happy coding!
 For the latest Melissa GeoCoder Object release notes, please visit: https://releasenotes.melissa.com/on-premise-api/geocoder-object/
 
 The console will ask the user for:
-- Zip Code
+- Zip 
 
 And return 
 
 For US:
 
-- PlaceName
+- Place Name
 - County
-- CountySubdivisionName
-- TimeZone
+- County Subdivision Name
+- Time Zone
 - Latitude
 - Longitude
-- ResultCodes
+- Result Codes
 
 For Canada:
 
-- TimeZone
+- Time Zone
 - Latitude
 - Longitude
 
 ## Tested Environments
-- Windows 64-bit Microsoft Visual C++ 14.34
-- Powershell 5.1
-- Melissa data files for 2023-06
+- Windows 10 64-bit Microsoft Visual C++ 14.34, Powershell 5.1
+- Melissa data files for 2023-07
 - Nmake 14.34
 - Visual Studio 2022 Developer Command Prompt v17.4.2 64-bit
 
@@ -52,7 +51,7 @@ This is the c++ version of the Melissa Object.
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 #### Visual Studio Developer Command Prompt
-It is important to note that you must be able to initialize the Visual Studio Developer Command Prompt environment for `x86_x64` in order to test the Melissa Phone Object. The Visual Studio Developer Command Prompt should already be downloaded if you have Microsoft Visual Studio installed. 
+It is important to note that you must be able to initialize the Visual Studio Developer Command Prompt environment for `x86_x64` in order to test the Melissa GeoCoder Object. The Visual Studio Developer Command Prompt should already be downloaded if you have Microsoft Visual Studio installed. 
 
 To check if you are able to intialize the Visual Studio Developer Command Prompt for `x86_x64`, you can open the start menu and search for `x86_x64 Cross Tools Command Prompt for VS 2022`. If this program exists, then you may continue to the next steps.
 
@@ -68,7 +67,7 @@ The console will then prompt you with the following warning shown in the image b
 
 #### Download this project
 ```
-$ git clone https://github.com/MelissaData/GeoObject-Cpp.git
+$ git clone https://github.com/MelissaData/GeoObject-Cpp
 $ cd GeoObject-Cpp
 ```
 
@@ -130,11 +129,9 @@ This is the expected output from a successful setup for interactive mode:
 ![alt text](/screenshots/output.png)
 
 ## Troubleshooting
-
 Troubleshooting for errors found while running your program.
 
 ### C# Errors:
-
 | Error      | Description |
 | ----------- | ----------- |
 | ErrorRequiredFileNotFound      | Program is missing a required file. Please check your Data folder and refer to the list of required files above. If you are unable to obtain all required files through the Melissa Updater, please contact technical support below. |
@@ -143,7 +140,6 @@ Troubleshooting for errors found while running your program.
 | ErrorLicenseExpired   | Expired license string. Please contact technical support below. |
 
 ## Contact Us
-
 For free technical support, please call us at 800-MELISSA ext. 4 (800-635-4772 ext. 4) or email us at tech@melissa.com.
 
 To purchase this product, contact the Melissa sales department at 800-MELISSA ext. 3 (800-635-4772 ext. 3).
