@@ -32,11 +32,7 @@ For Canada:
 
 ## Tested Environments
 - Windows 10 64-bit Microsoft Visual C++ 14.34, Powershell 5.1
-<<<<<<< HEAD
-- Melissa data files for 2024-Q3
-=======
-- Melissa data files for 2024-Q3
->>>>>>> bbcf31b1f31f7c6e931003122c629ee95dd0e18b
+- Melissa data files for 2024-Q4
 - Nmake 14.34
 - Visual Studio 2022 Developer Command Prompt v17.4.2 64-bit
 
@@ -73,8 +69,8 @@ The console will then prompt you with the following warning shown in the image b
 
 #### Download this project
 ```
-$ git clone https://github.com/MelissaData/GeoObject-Cpp
-$ cd GeoObject-Cpp
+git clone https://github.com/MelissaData/GeoObject-Cpp
+cd GeoObject-Cpp
 ```
 
 #### Set up Melissa Updater
@@ -111,24 +107,24 @@ There are two modes:
 
     The script will prompt the user for a zip code, then use the provided zip to test GeoCoder Object. For example:
     ```
-    $ .\MelissaGeoCoderObjectWindowsCpp.ps1
+    .\MelissaGeoCoderObjectWindowsCpp.ps1
     ```
     For quiet mode:
     ```
-    $ .\MelissaGeoCoderObjectWindowsCpp.ps1 -quiet
+    .\MelissaGeoCoderObjectWindowsCpp.ps1 -quiet
     ```
     
 - Command Line
 
     You can pass a zip code in the ```-zip``` parameter and a license string in ```-license``` parameter to test GeoCoder Object. For example:
     ```
-    $ .\MelissaGeoCoderObjectWindowsCpp.ps1 -zip "92688"
-    $ .\MelissaGeoCoderObjectWindowsCpp.ps1 -zip "92688" -license "<your_license_string>"
+    .\MelissaGeoCoderObjectWindowsCpp.ps1 -zip "92688"
+    .\MelissaGeoCoderObjectWindowsCpp.ps1 -zip "92688" -license "<your_license_string>"
     ```
     For quiet mode:
     ```
-    $ .\MelissaGeoCoderObjectWindowsCpp.ps1 -zip "92688" -quiet
-    $ .\MelissaGeoCoderObjectWindowsCpp.ps1 -zip "92688" -license "<your_license_string>" -quiet
+    .\MelissaGeoCoderObjectWindowsCpp.ps1 -zip "92688" -quiet
+    .\MelissaGeoCoderObjectWindowsCpp.ps1 -zip "92688" -license "<your_license_string>" -quiet
     ```
 
 This is the expected output from a successful setup for interactive mode:
