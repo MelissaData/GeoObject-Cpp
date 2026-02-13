@@ -5,7 +5,7 @@ This code showcases the Melissa GeoCoder Object using C++.
 
 Please feel free to copy or embed this code to your own project. Happy coding!
 
-For the latest Melissa GeoCoder Object release notes, please visit: https://releasenotes.melissa.com/on-premise-api/geocoder-object/
+To view the latest Melissa GeoCoder Object release notes or to subscribe to product notifications, please visit: https://releasenotes.melissa.com/on-premise-api/geocoder-object/
 
 For further details, please visit: https://docs.melissa.com/on-premise-api/geocoder-object/geocoder-object-quickstart.html
 
@@ -31,8 +31,8 @@ For Canada:
 - Longitude
 
 ## Tested Environments
-- Windows 10 64-bit Microsoft Visual C++ 14.34, Powershell 5.1
-- Melissa data files for 2025-Q4
+- Windows 11 64-bit Microsoft Visual C++ 14.34, Powershell 5.1
+- Melissa data files for 2026-Q1
 - Nmake 14.34
 - Visual Studio 2022 Developer Command Prompt v17.4.2 64-bit
 
@@ -69,8 +69,8 @@ The console will then prompt you with the following warning shown in the image b
 
 #### Download this project
 ```
-git clone https://github.com/MelissaData/GeoObject-Cpp
-cd GeoObject-Cpp
+git clone https://git.melissadata.com/dtgroup/melissadataobjectexamples/cpp/melissageocoderobjectwindowscpp.git
+cd melissageocoderobjectwindowscpp
 ```
 
 #### Set up Melissa Updater
