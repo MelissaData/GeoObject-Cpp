@@ -69,8 +69,8 @@ The console will then prompt you with the following warning shown in the image b
 
 #### Download this project
 ```
-git clone https://git.melissadata.com/dtgroup/melissadataobjectexamples/cpp/melissageocoderobjectwindowscpp.git
-cd melissageocoderobjectwindowscpp
+git clone https://github.com/MelissaData/GeoObject-Cpp
+cd GeoObject-Cpp
 ```
 
 #### Set up Melissa Updater
