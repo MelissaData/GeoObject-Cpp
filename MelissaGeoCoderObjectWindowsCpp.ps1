@@ -1,5 +1,45 @@
-# Name:    MelissaGeoCoderObjectWindowsCpp
-# Purpose: Use the MelissaUpdater to make the MelissaGeoCoderObjectWindowsCpp code usable
+<#
+.SYNOPSIS
+    Downloads the required components and then builds and runs MelissaGeoCoderObjectWindowsCpp
+
+.DESCRIPTION
+    This script uses the Melissa Updater to fetch the data file(s), the DLL, the C++ headers,
+    and the import library, verifies the DLL, headers, and import library arrived, then builds
+    inside the MSVC build environment and runs it against the supplied ZIP code.
+
+    Overall flow:
+      1. Read parameters / prompt for the license and data path.
+      2. Download the data file(s), DLL, headers, and import library via the Melissa Updater.
+      3. Confirm the DLL, headers, and import library are present (data files are not checked).
+      4. Build with nmake (via BuildProgram.ps1) and run (single test ZIP code or interactive).
+
+.PARAMETER zip
+    ZIP code to look up.
+
+.PARAMETER dataPath
+    Path to an existing data files directory. If omitted, the script prompts for
+    a path; pressing Enter at that prompt skips it and downloads the data files
+    into the project's Data folder via the Melissa Updater. A path that does not
+    exist aborts the script.
+
+.PARAMETER license
+    License string. Resolved in this order:
+      1. This parameter.
+      2. An interactive prompt, if the parameter was not supplied.
+      3. The MD_LICENSE environment variable, if the prompt was left blank.
+    Note that the environment variable is the last resort, not the first: running
+    without -license always prompts, even when MD_LICENSE is set.
+
+.PARAMETER quiet
+    Suppresses the Melissa Updater console output during the DLL, header, and import
+    library downloads. The data file download is not affected.
+
+.EXAMPLE
+    .\MelissaGeoCoderObjectWindowsCpp.ps1 -license "your-license"
+
+.EXAMPLE
+    .\MelissaGeoCoderObjectWindowsCpp.ps1 -zip "92688" -license "your-license"
+#>
 
 ######################### Parameters ##########################
 
@@ -8,6 +48,7 @@ param(
 
 ######################### Classes ##########################
 
+# Describes a single file to request from the Melissa Updater
 class DLLConfig {
   [string] $FileName;
   [string] $ReleaseVersion;
@@ -19,6 +60,7 @@ class DLLConfig {
 
 ######################### Config ###########################
 
+# Product release the updater pulls files for
 $RELEASE_VERSION = '2026.Q3'
 $ProductName = "GEOCODER_DATA"
 
@@ -49,6 +91,8 @@ elseif (!(Test-Path $DataPath) -and ($DataPath -ne "$ProjectPath\Data")) {
   exit
 }
 
+# Everything the example needs from the updater: the DLL (into the Build folder),
+# plus the headers and import library the compiler and linker need (into the project folder)
 $DLLs = @(
   [DLLConfig]@{
     FileName       = "mdGeo.dll";
@@ -86,6 +130,7 @@ $DLLs = @(
 
 ######################## Functions #########################
 
+# Download the product data file(s) into $DataPath via the Melissa Updater.
 function DownloadDataFiles([string] $license) {
   $DataProg = 0
   Write-Host "========================== MELISSA UPDATER ========================="
@@ -100,6 +145,8 @@ function DownloadDataFiles([string] $license) {
   Write-Host "MELISSA UPDATER FINISHED DOWNLOADING DATA FILE(S)!"
 }
 
+# Download each entry in $DLLs, routing the DLL to the Build folder and the headers
+# and import library to the project folder (with a progress bar).
 function DownloadDLLs() {
   Write-Host "MELISSA UPDATER IS DOWNLOADING DLL(S)..."
   $DLLProg = 0
@@ -143,6 +190,7 @@ function DownloadDLLs() {
   }
 }
 
+# Verify the DLL, headers, and import library landed where the build expects them
 function CheckDLLs() {
   Write-Host "`nDouble checking dll(s) were downloaded...`n"
   $FileMissing = $false 
@@ -228,11 +276,15 @@ Write-Host "All file(s) have been downloaded/updated!"
 
 # Start program
 # Build project
+# Initializes the MSVC build environment, then hands off to BuildProgram.ps1,
+# which runs nmake against the project's makefile.
 Write-Host "`n=========================== BUILD PROJECT =========================="
 
 cmd.exe /C """$CmdPath"" x86_x64 && Powershell -File BuildProgram.ps1" > $null
 
 # Run project
+# No ZIP code supplied -> run interactively; otherwise pass the ZIP code in.
+# The executable is produced into the Build folder by the build step above.
 if ([string]::IsNullOrEmpty($zip)) {
   & $BuildPath\MelissaGeoCoderObjectWindowsCpp.exe --license $License --dataPath $DataPath
 }
